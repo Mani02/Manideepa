@@ -1,0 +1,111 @@
+package com.niit.controller;
+
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.niit.ShoppingPortal.Dao.ProductDao;
+import com.niit.ShoppingPortal.model.Product;
+
+@Controller
+public class AdminController {
+	@Autowired
+	ProductDao pd;
+
+	
+	@RequestMapping("/addproduct")
+	public ModelAndView AddProducts(){
+		ModelAndView mv=new ModelAndView("AddProduct");
+		return mv ;
+	}
+	@RequestMapping(value="/addProduct", method=RequestMethod.POST)
+	public String showAddProduct(@ModelAttribute("p")Product p,HttpServletRequest request){
+		pd.Insert(p);
+		MultipartFile file = p.getFile();
+		
+		//String originalfile = file.getOriginalFilename();
+		
+		String filepath = request.getSession().getServletContext().getRealPath("/resources/images/Product/");
+		
+		String filename = filepath + "\\" + p.getProductid() + ".jpg";
+		System.out.println("File Path File "+filepath);
+		
+		try {
+			byte imagebyte[] = file.getBytes();
+			BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(filename));
+			fos.write(imagebyte);
+			fos.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/viewproduct" ;
+		}
+	@RequestMapping(value="/viewproduct" )
+	public ModelAndView showAllProduct(){
+		List<Product> products=pd.getAllProduct();
+		
+		ModelAndView  se=new ModelAndView("ViewProduct");
+		se.addObject("products",products);
+	//	se.addObject("welcomemsg", "Welcome ");
+
+		return se;
+		
+		}
+	@RequestMapping(value="/delete/{productid}")
+	public String delete(@PathVariable("productid") int productid){
+		
+		
+	Product pp=pd.getProductbyId(productid);
+	pd.deleteProduct(pp);
+		return "redirect:/viewproduct";
+	}
+	
+	@RequestMapping(value="/update/{productid}")
+	public ModelAndView update(@PathVariable("productid") int productid){
+		ModelAndView mv=new ModelAndView("Edit");
+		Product pp=pd.getProductbyId(productid);
+		mv.addObject("p",pp);
+		return mv;
+	}
+	@RequestMapping(value="/editsave", method=RequestMethod.POST)
+	public String editsave(@ModelAttribute("p") Product p,HttpServletRequest request){
+				pd.updateProduct(p);
+				MultipartFile file = p.getFile();
+				
+				String filepath = request.getSession().getServletContext().getRealPath("/resources/images/Product/");
+				
+				String filename = filepath + "\\" + p.getProductid() + ".jpg";
+				System.out.println("File Path File "+filepath);
+				
+				try {
+					byte imagebyte[] = file.getBytes();
+					BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(filename));
+					fos.write(imagebyte);
+					fos.close();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		return "redirect:/viewproduct";
+		}
+	@RequestMapping(value="/viewproduct/{cat}")
+	public ModelAndView show1(@PathVariable("cat") String cat){
+		ModelAndView mv=new ModelAndView("ViewProduct");
+		List<Product> obj=pd.getByCategory(cat);
+		mv.addObject("products", obj);
+		return mv;
+	}
+}

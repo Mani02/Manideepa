@@ -1,0 +1,84 @@
+package com.niit.ShoppingPortal.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+public class Shipping {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public int shippingid;
+	
+	private String firstName;
+	private String lastName;
+	private String email;
+	private long contactno;
+	private String address;
+	private String city;
+	private long pincode;
+	private String landmark;
+	
+	
+	
+	
+	public int getShippingid() {
+		return shippingid;
+	}
+	public void setShippingid(int shippingid) {
+		this.shippingid = shippingid;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public long getContactno() {
+		return contactno;
+	}
+	public void setContactno(long contactno) {
+		this.contactno = contactno;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public long getPincode() {
+		return pincode;
+	}
+	public void setPincode(long pincode) {
+		this.pincode = pincode;
+	}
+	public String getLandmark() {
+		return landmark;
+	}
+	public void setLandmark(String landmark) {
+		this.landmark = landmark;
+	}
+	
+}

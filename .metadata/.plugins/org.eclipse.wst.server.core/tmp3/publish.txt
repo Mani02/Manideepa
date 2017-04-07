@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Wed Apr 05 19:08:27 IST 2017
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\Moni\\.m2\\repository\\org\\springframework\\spring-web\\4.3.3.RELEASE\\spring-web-4.3.3.RELEASE.jar=WEB-INF/lib/spring-web-4.3.3.RELEASE.jar
+org.eclipse.jst.j2ee.server\:ShoppingPortal=WEB-INF/lib/ShoppingPortal-0.0.1-SNAPSHOT.jar

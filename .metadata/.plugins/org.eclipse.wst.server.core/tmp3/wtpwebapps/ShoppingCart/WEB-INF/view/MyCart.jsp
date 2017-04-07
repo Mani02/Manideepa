@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<link href="${ctx}/resources/css/style1.css" rel="stylesheet">
+<title>My Cart</title>
+</head>
+<body
+	style="background: url('resources/images/floral_pattern.jpg'); background-size: cover;">
+	<center>
+		<div id="header">
+			<%@include file="header.jsp"%>
+		</div>
+		<table border="3">
+
+			<thead>
+				<tr>
+					<th>Cart Id</th>
+					<th>Product Id</th>
+					<th>Cart Email</th>
+					<th>Product Name</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total Price</th>
+					<th>Grand Total</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<c:forEach items="${allcart}" var="cart">
+					<tr>
+						<td>${cart.cartid}</td>
+						<td>${cart.productid}</td>
+						<td>${cart.cartemail}</td>
+						<td>${cart.productName}</td>
+						<td>${cart.price}</td>
+						<td>${cart.quantity}</td>
+						<td>${cart.totalprice}</td>
+						<td>${grandtot}</td>
+						<td><a class="btn icon-btn btn-danger"
+							href="${ctx }/remove/${cart.cartid}"><span
+								class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+
+		</table>
+	</center>
+	<form id="Continue" action="${ctx}/viewproduct" method="post">
+	<button class="button1" ><span >Continue Shopping</span><span class="glyphicon glyphicon-triangle-right"></span></button>
+	</form>
+	<form id="Checkout" action="${ctx}/billingpage" method="post">
+	<button class="button1" ><span >Checkout</span></button>
+	</form>
+		<div id="footer">
+			<%@include file="footer.jsp"%>
+
+		</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+@CHARSET "ISO-8859-1";
+
+a:link {
+	text-decoration: none;
+}
+
+a:hover {
+	color: hotpink;
+}
+
+nav ul li a {
+	background: #333300;
+	display: inline-block;
+	font-size: 13pt;
+	color: gold;
+	font-family: verdana;
+}
+
+nav ul li ul li a {
+	background: #333300;
+	display: inline-block;
+	font-size: 13pt;
+	font-color: gold;
+	font-family: verdana;
+}
+
+footer {
+	clear: both;
+	height: 130px;
+	background: #333300;
+	width: 100%;
+	bottom: 0px;
+}
+
+
+
+.navbar-header {
+	text-shadow: 2px 2px 4px #ffffff;
+}
+
+.button {
+	border-radius: 8px;
+	background-color: #cccc00;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	width: 210px;
+	height: 50px;
+}
+
+.button1 {
+	border-radius: 8px;
+	background-color: #ff6600;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	width: 210px;
+	height: 50px;
+}
+
+.button2 {
+	border-radius: 8px;
+	background-color: #009933;
+	color: gold;
+	font-weight: bold;
+	font-size: 18px;
+	width: 120px;
+	height: 30px;
+}
+
+.button3 {
+	border-radius: 6px;
+	background-color: #cc9900;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	width: 150px;
+	height: 30px;
+}
+
+.prod-table {
+	font-size: 20px;
+	font-family: arial;
+}
+
+.main_section {
+	font-size: 20px;
+}
+
+.sign_up_table {
+	font-size: 20px;
+}
+
+.btn-glyphicon {
+	padding: 8px;
+	background: #ffffff;
+	margin-right: 4px;
+	font-size: 20px;
+}
+
+.success {
+	font-size: 20px;
+}
+
+.danger {
+	font-size: 20px;
+}
+
+.icon-btn {
+	padding: 1px 15px 3px 2px;
+	border-radius: 50px;
+}
+
+h2 {
+	font-colour: DARKSLATEBLUE;
+}
+
+.message {
+	float: left;
+}
+
+.jumbotron {
+	background: #996600;
+	color: #FFF;
+	border-radius: 0px;
+}
+
+.jumbotron-sm {
+	padding-top: 24px;
+	padding-bottom: 24px;
+}
+
+.jumbotron small {
+	color: #FFF;
+}
+
+.h3 {
+	color: #FFF;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.well {
+	background: #ffff99;
+	font-weight: bold;
+}
+
+.address {
+	font-size: 16px;
+}
+
+.glyphicon {
+	font-size: 16px;
+}

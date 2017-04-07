@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="${ctx}/resources/css/style.css" rel="stylesheet">
+
+<title>Blossoms ~ Admin</title>
+<%@include file="header.jsp"%>
+</head>
+
+<body
+	style="background: url('resources/images/floral_pattern.jpg'); background-size: cover;">
+	<center>
+		<h2>Welcome to Blossoms</h2>
+		<h3>Admin Page</h3>
+		<form id="ProductDetails" action="${ctx}/viewproduct" method="post">
+			<br> <br> <br> <br>
+			<button class="button">
+				<span>Product Details</span>
+			</button>
+		</form>
+
+	</center>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<%@include file="footer.jsp"%>
+</body>
+</html>

@@ -1,0 +1,89 @@
+package com.niit.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.niit.ShoppingPortal.Dao.CartDao;
+import com.niit.ShoppingPortal.Dao.OrderDao;
+import com.niit.ShoppingPortal.Dao.ProductDao;
+import com.niit.ShoppingPortal.Dao.ShippingDao;
+import com.niit.ShoppingPortal.Dao.UserDao;
+import com.niit.ShoppingPortal.model.Cart;
+import com.niit.ShoppingPortal.model.Order;
+import com.niit.ShoppingPortal.model.Product;
+import com.niit.ShoppingPortal.model.Shipping;
+import com.niit.ShoppingPortal.model.User;
+
+@Controller
+public class ShippingController {
+	@Autowired
+	ShippingDao sd;
+	@Autowired
+	UserDao ud;
+	@Autowired
+	ProductDao pd;
+	@Autowired
+	CartDao cd;
+	@Autowired
+	OrderDao od;
+	
+	@Autowired
+	HttpSession hs;
+	
+	int shippingid ;
+	int productID;
+	int Quantity;
+	
+	Shipping ship;
+	Cart c;
+	Product p;
+	
+	Order or;
+	@RequestMapping("/billingpage")
+	public ModelAndView buy(){
+		
+		
+			String mail=hs.getAttribute("usermail").toString();
+			System.out.println(mail);
+		ModelAndView mv=new ModelAndView("BillingAddress");
+		
+	User user=	ud.getEmailId(mail);
+
+	mv.addObject("u",user);
+		return mv;
+		
+	
+	}
+	
+	@RequestMapping("/shipping")
+	public ModelAndView shipping(){
+		ModelAndView mv=new ModelAndView("ShippingAddress");
+		return mv;
+	}
+	
+	@RequestMapping("/orderconfirm")
+	public ModelAndView postshipping(@ModelAttribute ("s")Shipping s){
+		String mail=hs.getAttribute("usermail").toString();
+		sd.insert(s);
+		ModelAndView mv=new ModelAndView("Order");
+		mv.addObject("s",mail);
+		return mv;
+	}
+	@RequestMapping("/orderconfirm2")
+	public ModelAndView order(){
+		ModelAndView mv=new ModelAndView("Order");
+		return mv;
+	}
+	@RequestMapping("/thankyou")
+	public ModelAndView thankyou(){
+		ModelAndView mv=new ModelAndView("ThankYou");
+		return mv;
+	}
+
+}

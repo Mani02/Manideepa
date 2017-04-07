@@ -1,0 +1,14 @@
+package com.niit.ShoppingPortal.Dao;
+
+import java.util.List;
+
+import com.niit.ShoppingPortal.model.Order;
+
+public interface OrderDao {
+	
+	public void insert(Order o);
+	public Order getbymail(String mail);
+	public Order getbymail(int oid);
+	public List<Order> getall();
+
+}

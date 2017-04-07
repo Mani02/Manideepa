@@ -1,0 +1,5 @@
+package com.niit.ShoppingPortal.Dao;
+
+public interface Order {
+
+}

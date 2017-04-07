@@ -1,0 +1,36 @@
+package com.niit.ShoppingPortal.DaoImpl;
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.niit.ShoppingPortal.Dao.OrderDao;
+import com.niit.ShoppingPortal.model.Order;
+
+@Repository
+@Transactional
+public class OrderDaoImpl implements OrderDao{
+	@Autowired
+	SessionFactory sessionFactory;
+	
+	public void insert(Order o) {
+		sessionFactory.getCurrentSession().persist(o);
+		
+	}
+
+	public Order getbymail(String mail) {
+		return sessionFactory.getCurrentSession().get(Order.class,mail);
+	}
+
+	public Order getbymail(int oid) {
+		return sessionFactory.getCurrentSession().get(Order.class,oid);
+	}
+
+	public List<Order> getall() {
+		return sessionFactory.getCurrentSession().createQuery("from Order").list();
+	}
+
+}

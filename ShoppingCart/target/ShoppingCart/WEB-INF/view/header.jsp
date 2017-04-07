@@ -1,0 +1,94 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title></title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+</head>
+<body>
+	<nav class="navbar navbar-light" style="background-color: #333300;">
+	 
+	<div class="container-fluid">
+		   
+		<div class="navbar-header">
+			      <a class="navbar-brand" href="#"><b><i><font
+						face="monotype corsiva" ;
+						size=30pt; color=ff0066>Blossoms</font></i></b></a>
+			   
+		</div>
+		    
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="${ctx}/home"><b>Home</b></a></li>       
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"><b>Product</b><span
+					class="caret"></span></a>
+
+				<ul class="dropdown-menu"
+					style="background-color: #86cc74;color=gold">
+					    
+					<li><a href="${ctx}/viewproduct"><font color=gold><b>All
+									Product</b></font></a></li>    
+					<li><a href="${ctx}/viewproduct/Men"><font color=gold><b>Men</b></font></a></li>
+					         
+					<li><a href="${ctx}/viewproduct/Women"><font color=gold><b>Women</b></font></a></li>
+					         
+					<li><a href="${ctx}/viewproduct/Bags"><font color=gold><b>Bags</b></font></a></li>
+					<li><a href="${ctx}/viewproduct/Shoes"><font color=gold><b>Shoes</b></font></a></li>
+					  
+				</ul>       </li>
+			<li class="active"><a href="${ctx }/aboutus"><b>About Us</b></a></li>
+			<li class="active"><a href="#"><b>Contact Us</b></a></li>  
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			  
+			<c:if test="${empty usermail}">
+			
+    			<li><a href="${ctx }/Login"><b>Login</b></a></li>
+			</c:if>  
+			<c:if test="${not empty usermail}">
+      			<li><a href="${ctx}/logout"><b>Logout</b></a></li>
+				<form action="${ctx}/cartpage">
+				<button class="button2" id="addToCart" form="Cart">
+							<span style=""
+								class="glyphicon glyphicon-shopping-cart" ></span><b> My Cart</b>
+				</button>
+				</form>
+			</c:if>
+			<c:if test="${empty usermail}">
+				<li><a href="${ctx }/signup1"><b>Sign Up</b></a></li>
+			</c:if>
+			
+			   
+		</ul>
+		<div class="message">
+
+			<font size="4" color="white"><b>${successReg}</b></font> 
+			<br>
+			<font size="4" color="white"><b>${errormessage}</b></font>
+			<br>
+			<font size="4" color="white"><b>${successmessage}</b></font>
+			<br>
+			<font size="4" color="white"><b>${adminmsg}</b></font>
+			<br>
+			<font size="4" color="white"><b>${welcomemsg}</b></font>  
+			<font size="4" color="white"><b>${uname}</b></font>
+			<font size="4" color="white"><b>${unameuser}</b></font>
+			<font size="4" color="white"><b>${abc}</b></font>
+
+		</div>
+		 
+	</div>
+	</nav>
+</body>
+</html>

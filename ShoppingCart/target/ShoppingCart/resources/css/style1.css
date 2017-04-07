@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+table, th, td {
+   border: 4px solid darkseagreen;
+	
+}
+th, td {
+	text-align: left;
+	width: 100%;
+	
+}
+th{
+	background-color:#ffff66;
+}
+tr:nth-child(even) {
+	background-color: #ccff66;
+}

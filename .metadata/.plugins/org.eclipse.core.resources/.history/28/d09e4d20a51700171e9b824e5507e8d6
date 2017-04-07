@@ -1,0 +1,71 @@
+package com.niit.ShoppingPortal.DaoImpl;
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.niit.ShoppingPortal.Dao.CartDao;
+import com.niit.ShoppingPortal.model.Cart;
+import com.niit.ShoppingPortal.model.Product;
+
+@Repository
+@Transactional
+public class CartDaoImpl implements CartDao{
+	@Autowired
+	SessionFactory sessionFactory;
+	
+	
+	public void addCart(Cart c) {
+		sessionFactory.getCurrentSession().save(c);
+	}
+
+	public void deletecart(Cart c) {
+		sessionFactory.getCurrentSession().delete(c);
+		
+	}
+
+	public Cart getCartbyId(int cartid) {
+		
+		return (Cart)sessionFactory.getCurrentSession().get(Cart.class, cartid);
+	}
+
+	public List<Cart> getCartByUser(String cartemail) {
+		
+		List<Cart> obj=sessionFactory.getCurrentSession().createQuery("from Cart where cartemail='"+cartemail+"'").list();
+		return obj;
+	}
+
+	public boolean issameproduct(String cartemail, int productid) {
+		List<Cart> obj=sessionFactory.getCurrentSession().createQuery("from Cart where cartemail='"+cartemail+"'and productid='"+productid+"'").list();
+		int i=0;
+		for(Cart c:obj){
+			if(c.getProductid()==productid){
+				i++;
+			}
+		}
+		if(i==0){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public List<Cart> getallcartbyuser(String mail) {
+		List<Cart> obj=sessionFactory.getCurrentSession().createQuery("from addtocart where cartemail='"+mail+"'").list();
+		return obj;
+	}
+
+	public Long gettotalamount(String cartemail) {
+	String hql="select sum(price) from Cart where cartemail="+"'"+cartemail+"'";
+	
+	Query query=sessionFactory.getCurrentSession().createQuery(hql);
+	Long sum=(Long) query.uniqueResult();
+		return sum;
+	}
+	
+}
